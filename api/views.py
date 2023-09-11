@@ -46,6 +46,6 @@ class PersonDetail(APIView):
         person = workers.Person.delete_person(pk)
         if person is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        return Response({"message":"Person Deleted"},status=status.HTTP_204_NO_CONTENT)
+        return Response({"message":"Person successfully cut off, cheers!"},status=status.HTTP_204_NO_CONTENT)
 
 
