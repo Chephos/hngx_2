@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.serializers import ValidationError
+from rest_framework import renderers
 
 from . import serializers
 from . import workers
@@ -11,6 +12,7 @@ from . import workers
 
 
 class PersonCreate(APIView):
+    renderer_classes = [renderers.JSONRenderer]
     def get(self, request):
         return Response(
             {
@@ -33,6 +35,7 @@ class PersonCreate(APIView):
 
 
 class PersonDetail(APIView):
+    renderer_classes = [renderers.JSONRenderer]
     def get(self, request, pk=None):
         person = workers.Person.get_person(pk)
         if person is None:
