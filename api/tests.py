@@ -7,7 +7,14 @@ import requests
 class TestPersonCRUD:
     base_url = "http://localhost:8000/api"
 
-    def _call(self, method, endpoint, data=None):
+    def _call(self, method, endpoint: str, data=None):
+        """
+        Send request to API
+        :param method: requests package method
+        :param endpoint: endpoint to send request to
+        :param data: request body
+        :return: dictionary response from API
+        """
         url = f"{self.base_url}/{endpoint}"
         response = method(url, json=data)
         return response
