@@ -5,7 +5,7 @@ import requests
 
 
 class TestPersonCRUD:
-    base_url = "http://localhost:8000/api"
+    base_url = "https://hngx-2-gnw8.onrender.com/api"
 
     def _call(self, method, endpoint: str, data=None):
         """
@@ -29,7 +29,7 @@ class TestPersonCRUD:
             print("Create Person Test Failed❌")
 
     def test_get_person(self, person_id):
-        response = self._call(requests.get, person_id)
+        response = self._call(requests.get, f"{person_id}/")
         if response.status_code == 200:
             print("Get Person Test Passed✅")
             print("Response Data:", response.json(), "\n")
@@ -37,7 +37,7 @@ class TestPersonCRUD:
             print("Get Person Test Failed❌")
 
     def test_update_person(self, person_id, data):
-        response = self._call(requests.put, person_id, data)
+        response = self._call(requests.put, f"{person_id}/", data)
         if response.status_code == 200:
             print("Update Person Test Passed✅")
             print("Response Data:", response.json(), "\n")
@@ -45,7 +45,7 @@ class TestPersonCRUD:
             print("Update Person Test Failed❌")
 
     def test_delete_person(self, person_id):
-        response = self._call(requests.delete, person_id)
+        response = self._call(requests.delete, f"{person_id}/")
         if response.status_code == 204:
             print("Delete Person Test Passed✅")
         else:
