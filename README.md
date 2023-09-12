@@ -114,6 +114,12 @@ Response:
 To update a person, send a PUT request to the `/api/<user_id>/`
 
 Request:
+```json
+{
+    "name": "Jane Doe"
+}
+```
+or run the following in your terminal:
 ```bash
 curl -X PUT http://localhost:8000/api/<user_id>/ -d "name=Jane Doe"
 ```
