@@ -13,7 +13,8 @@ from . import workers
 
 class PersonCreate(APIView):
     renderer_classes = [renderers.JSONRenderer]
-    def get(self, request): # the get method for when you visit the api url
+
+    def get(self, request):  # the get method for when you visit the api url
         return Response(
             {
                 "message": "why not create new persons on here and get what it feels like to be God:)"
@@ -36,10 +37,13 @@ class PersonCreate(APIView):
 
 class PersonDetail(APIView):
     renderer_classes = [renderers.JSONRenderer]
+
     def get(self, request, pk=None):
         person = workers.Person.get_person(pk)
         if person is None:
-            return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
+            return Response(
+                status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"}
+            )
         serializer = serializers.Person(person)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -48,13 +52,17 @@ class PersonDetail(APIView):
         serializer.is_valid(raise_exception=True)
         person = workers.Person.update_person(pk, serializer.validated_data)
         if person is None:
-            return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
-        return Response({**{"id":pk},**serializer.data}, status=status.HTTP_200_OK)
+            return Response(
+                status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"}
+            )
+        return Response({**{"id": pk}, **serializer.data}, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         person = workers.Person.delete_person(pk)
         if person is None:
-            return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
+            return Response(
+                status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"}
+            )
         return Response(
             {"message": "Person successfully cut off, cheers!"},
             status=status.HTTP_204_NO_CONTENT,
