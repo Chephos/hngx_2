@@ -39,7 +39,7 @@ class PersonDetail(APIView):
     def get(self, request, pk=None):
         person = workers.Person.get_person(pk)
         if person is None:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
         serializer = serializers.Person(person)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -48,13 +48,13 @@ class PersonDetail(APIView):
         serializer.is_valid(raise_exception=True)
         person = workers.Person.update_person(pk, serializer.validated_data)
         if person is None:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         person = workers.Person.delete_person(pk)
         if person is None:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
         return Response(
             {"message": "Person successfully cut off, cheers!"},
             status=status.HTTP_204_NO_CONTENT,
