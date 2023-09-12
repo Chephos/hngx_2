@@ -36,7 +36,7 @@ Follow these steps to set up and run the API on your local machine:
 
 ```bash
 git clone https://github.com/Chephos/hngx_2.git
-cd crud-api
+cd hngx_
 ```
 
 ### 2. Create and Activate a Virtual Environment
@@ -138,7 +138,8 @@ Response:
 ```json
 {
     "message": "Person successfully cut off, cheers!"
-}```
+}
+```
 
 ## Testing
 Run:
