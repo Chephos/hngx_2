@@ -13,7 +13,7 @@ from . import workers
 
 class PersonCreate(APIView):
     renderer_classes = [renderers.JSONRenderer]
-    def get(self, request):
+    def get(self, request): # the get method for when you visit the api url
         return Response(
             {
                 "message": "why not create new persons on here and get what it feels like to be God:)"
@@ -49,7 +49,7 @@ class PersonDetail(APIView):
         person = workers.Person.update_person(pk, serializer.validated_data)
         if person is None:
             return Response(status=status.HTTP_404_NOT_FOUND, data={"message": "Person not found"})
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response({**{"id":pk},**serializer.data}, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         person = workers.Person.delete_person(pk)
