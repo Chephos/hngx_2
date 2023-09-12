@@ -80,6 +80,7 @@ The API provides the following endpoints:
 - `Delete a Person` - DELETE /api/<user_id>/
 
 ## Usage
+Check out the postman documentation [here](https://www.postman.com/winter-escape-106605/workspace/hngx/collection/26269842-6c87f7c6-b579-41bc-b919-b0e8b2cf8a79?action=share&creator=26269842)
 ### 1. Creating a Person
 To create a person, send a POST request to the `/api/` 
 
@@ -153,6 +154,7 @@ Run:
 ```bash
 python api/tests.py
 ```
+### or check out the postman collection [here](https://www.postman.com/winter-escape-106605/workspace/hngx/collection/26269842-6c87f7c6-b579-41bc-b919-b0e8b2cf8a79?action=share&creator=26269842)
 
 
 ## Known Limitations and Assumptions
